@@ -1,4 +1,5 @@
 int climbStairs-non(int n) {
+    // Fibonacci
     int result = 0;
     int a = 0;
     int b = 1;
