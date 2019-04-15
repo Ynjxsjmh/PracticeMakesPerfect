@@ -9,25 +9,32 @@
  */
 
 vector<TreeNode*> generateTrees(int n) {
-    vector<TreeNode*> result;
-
-    generateBST(result, nullptr, 1, n);
-
-    return result;
+    // 生成一颗 BST 就是选取当前树的根，以及其子树。根的不同会导致不同的 BST
+    if(n == 0) return vector<TreeNode*>(0);
+    return generateBST(1, n);
 }
 
-void generateBST(vector<TreeNode*>& result, TreeNode* root, int left, int right) {
+vector<TreeNode*> generateBST(int left, int right) {
+    vector<TreeNode*> result;
+
     if (left > right) {
         result.push_back(nullptr);
-        return;
+        return result;
     }
 
     for (int i = left; i <= right; i++) {
-        root = new TreeNode(i);
+        vector<TreeNode*> lefts = generateBST(left, i-1);
+        vector<TreeNode*> rights = generateBST(i+1, right);
 
-        generateBST(result, root->left, left, i-1);
-        generateBST(result, root->right, i+1, right);
-
-        result.push_back(root);
+        for (int j = 0; j < lefts.size(); j++) {
+            for (int k = 0; k < rights.size(); k++) {
+                TreeNode* root = new TreeNode(i);
+                root->left = lefts[j];
+                root->right = rights[k];
+                result.push_back(root);
+            }
+        }
     }
+
+    return result;
 }
