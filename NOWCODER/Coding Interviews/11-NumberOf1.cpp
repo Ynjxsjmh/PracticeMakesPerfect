@@ -4,6 +4,8 @@ using namespace std;
 
 int  NumberOf1(int n) {
     if (n == -2147483648) {
+        // INT_MAX = -INT_MIN-1
+        // 直接取反溢出
         return 1;
     }
 
@@ -49,7 +51,7 @@ int  NumberOf1(int n) {
 }
 
 int main() {
-    int n = -2147483648;
-    std::cout << NumberOf12(n) << std::endl;
+    int n = -5;
+    std::cout << NumberOf1(n) << std::endl;
     return 0;
 }
