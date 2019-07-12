@@ -1,20 +1,8 @@
 // 标签：二叉树
 
 vector<int> pathInZigZagTree(int label) {
-    vector<int> num;
+    vector<int> num = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576};
     vector<int> result;
-
-    int i = 1;
-    int count = 0;
-    int range = pow(10, 6);
-
-    // 首先算出每一层有多少个节点
-    while (2*i-1 < range) {
-        num.push_back(i);
-        count++;
-        i = pow(2, count);
-    }
-    num.push_back(2*i);
 
     int last;
     for (int i = 0; i < num.size(); i++) {
