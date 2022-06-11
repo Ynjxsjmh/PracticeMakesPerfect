@@ -49,3 +49,29 @@ class Solution(object):
                 s.add(num)
 
         return None
+
+    def findDuplicate(self, nums):
+        """基于值的二分法：
+        因为数都在 [1,n] 之间，二分搜索，
+        统计列表中和 mid 相比的数量。
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        lo = 1
+        hi = len(nums)
+
+        while lo < hi:
+            mid = lo + (hi - lo) / 2
+
+            cnt = 0
+            for num in nums:
+                if num <= mid:
+                    cnt += 1
+
+            if cnt <= mid:
+                lo = mid + 1
+            else:
+                hi = mid
+
+        return hi
