@@ -40,9 +40,11 @@ import heapq
 class Solution(object):
     def kthSmallest(self, matrix, k):
         """使用最大堆来实现
-        但是 Python 的 heapq 其实是个最小堆
-        堆里面只会保存较小的数
-        我们将所有数去相反后，最小也就成了最大
+        每当堆大小超过 k 时，我们就移除最大的那一个，
+        这样的话，最后我们就可以剩下 k 个最小的了。
+        由于根是最大的，根就是第 k 个最小的。
+        Python heapq 实现的是最小堆，取相反数模拟
+        最大堆。
         :type matrix: List[List[int]]
         :type k: int
         :rtype: int
