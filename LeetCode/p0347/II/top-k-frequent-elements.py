@@ -52,6 +52,9 @@ class Solution(object):
 
         # 根是最小的 -v，即最大的 v
         # 循环弹出 k 个最大的 v
+        # 和 kth largest 的区别在于
+        # kth largest 不加相反数弹出的是最小的
+        # 这里加了相反数弹出的实际是最大的，符合题目找出 k 个最大的要求
         res = []
         for _ in range(k):
             res.append(heapq.heappop(max_heap)[1])
