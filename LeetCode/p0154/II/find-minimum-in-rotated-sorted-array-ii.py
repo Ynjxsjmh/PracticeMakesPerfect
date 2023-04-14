@@ -60,3 +60,26 @@ class Solution(object):
                 r -= 1
 
         return nums[r]
+
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+
+        l = 0
+        r = len(nums)
+
+        while l < r:
+            m = l + (r - l) / 2
+
+            if nums[m] > nums[r-1]:
+                # [l, m] 有序
+                l = m
+            elif nums[m] < nums[r-1]:
+                # [m, r] 有序
+                r = m
+            else:
+                r -= 1
+
+        return nums[l]
